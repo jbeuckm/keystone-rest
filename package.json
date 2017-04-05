@@ -1,0 +1,25 @@
+{
+  "name": "keystone-rest",
+  "version": "0.0.1",
+  "description": "Adds REST-like routes and Swagger UI to Keystone ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbeuckm/keystone-rest.git"
+  },
+  "keywords": [
+    "keystonejs",
+    "swagger",
+    "cms",
+    "rest"
+  ],
+  "author": "Joe Beuckman",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/jbeuckm/keystone-rest/issues"
+  },
+  "homepage": "https://github.com/jbeuckm/keystone-rest#readme"
+}
