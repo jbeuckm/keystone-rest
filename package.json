@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/jbeuckm/keystone-rest#readme",
   "dependencies": {
-    "swagger-jsdoc": "^1.9.2",
-    "swagger-ui": "^3.0.4"
+    "swagger-jsdoc": "^1.9.2"
   }
 }
