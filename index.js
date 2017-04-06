@@ -22,44 +22,24 @@ module.exports.addRoutes = function (app, keystone) {
         // path to the API docs
         apis: ['./server.js', './models/*.js', './resources/*.js'],
     };
+    
+    
+    var swagger_helper = require('./lib/swagger_helper');
+    var route_helper = require('./lib/route_helper');
 
     // initialize swagger-jsdoc
     var swaggerSpec = swaggerJSDoc(options);
 
     for (var key in keystone.lists) {
-        var resource = keystone.lists[key].path;
-                
-        swaggerSpec.paths[resource] = {
-            "post": {
-                tags: [key]
-            },
-            "get": {
-                tags: [key]
-            },
-            "put": {
-                tags: [key]
-            },
-            "delete": {
-                tags: [key]
-            }
-        };
-
-        console.log(Object.keys(keystone.lists[key].fields));
         
-        var definition = {
-            type: 'object',
-            properties: {
-                
-            }
-        };
+        var list = keystone.lists[key];
         
-        for (var property in keystone.lists[key].fields) {
-            definition.properties[property] = {
-                type: 'string'
-            }
+        var paths = swagger_helper.buildPaths(list);
+        for (var path in paths) {
+            swaggerSpec.paths[path] = paths[path];
         }
-        
-        swaggerSpec.definitions[key] = definition;
+
+        swaggerSpec.definitions[key] = swagger_helper.buildDefinition(list);
         
     }
 
