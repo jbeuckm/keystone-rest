@@ -29,7 +29,7 @@ module.exports.addRoutes = function (app, keystone) {
     for (var key in keystone.lists) {
         var resource = keystone.lists[key].path;
                 
-        swaggerSpec.paths['/'+resource] = {
+        swaggerSpec.paths[resource] = {
             "post": {
                 tags: [key]
             },
