@@ -46,12 +46,12 @@ module.exports.addRoutes = function (app, keystone, basePath) {
 
         var list = keystone.lists[key];
 
-        var paths = swagger_helper.buildPaths(list);
+        var paths = swagger_helper.buildListPaths(list);
         for (var path in paths) {
             swaggerSpec.paths[path] = paths[path];
         }
 
-        swaggerSpec.definitions[key] = swagger_helper.buildDefinition(list);
+        swaggerSpec.definitions[key] = swagger_helper.buildListDefinition(list);
 
     }
 
