@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/jbeuckm/keystone-rest#readme",
   "dependencies": {
+    "express": "^4.15.2",
+    "keystone": "^0.3.22",
     "swagger-jsdoc": "^1.9.2"
   }
 }
