@@ -23,7 +23,7 @@ In the default *yeoman-keystone* generator app, the routes are added like this:
 keystone.set('routes', require('./routes'));
 ```
 
-You could modify this section to include the routes for this module like this:
+You could modify this section to include the routes like this:
 
 ```javascript
 keystone.set('routes', function(app){
