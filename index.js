@@ -34,9 +34,8 @@ module.exports.addRoutes = function (app, keystone, basePath) {
     apiRouter.use(function (req, res, next) {
         req.keystone = keystone;
         next();
-    });
+    });    
     route_helper.buildRoutes(apiRouter);
-
     app.use(basePath, apiRouter);
 
 
