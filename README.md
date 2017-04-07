@@ -1,6 +1,10 @@
 # Keystone REST
 
-REST-like routes with [Swagger UI](https://github.com/swagger-api/swagger-ui) for [KeystoneJS](https://github.com/keystonejs/keystone)
+This module adds a REST resource for each *List* in your [KeystoneJS](https://github.com/keystonejs/keystone) app. An interactive [Swagger UI](https://github.com/swagger-api/swagger-ui) interface is exposed at `/api-docs/index.html`.
+
+![Swagger UI Interface](screenshot.png)
+
+=====
 
 ### Usage
 
@@ -30,7 +34,5 @@ keystone.set('routes', function(app){
 });
 ```
 
-This module adds a REST resource for each *List* in your Keystone app. An interactive Swagger UI interface is exposed at `/api-docs/index.html`.
 
-![Swagger UI Interface](screenshot.png)
 
