@@ -4,8 +4,6 @@ This module adds a REST resource for each *List* in your [KeystoneJS](https://gi
 
 ![Swagger UI Interface](screenshot.png)
 
-=====
-
 ### Usage
 
 Install this module in your Keystone project...
