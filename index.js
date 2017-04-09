@@ -41,6 +41,7 @@ module.exports.addRoutes = function (app, keystone, basePath) {
 
     // initialize swagger-jsdoc
     var swaggerSpec = swaggerJSDoc(options);
+    swaggerSpec.paths = swagger_helper.buildSessionPaths();
 
     for (var key in keystone.lists) {
 
