@@ -1,143 +1,164 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="x-ua-compatible" content="IE=edge">
-  <title>Swagger UI</title>
-  <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
-  <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
-  <link href='css/typography.css' media='screen' rel='stylesheet' type='text/css'/>
-  <link href='css/reset.css' media='screen' rel='stylesheet' type='text/css'/>
-  <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css'/>
-  <link href='css/reset.css' media='print' rel='stylesheet' type='text/css'/>
-  <link href='css/print.css' media='print' rel='stylesheet' type='text/css'/>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>Swagger UI</title>
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16" />
+    <link href='css/typography.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='css/reset.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='css/screen.css' media='screen' rel='stylesheet' type='text/css' />
+    <link href='css/reset.css' media='print' rel='stylesheet' type='text/css' />
+    <link href='css/print.css' media='print' rel='stylesheet' type='text/css' />
 
-  <script src='lib/object-assign-pollyfill.js' type='text/javascript'></script>
-  <script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
-  <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
-  <script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
-  <script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
-  <script src='lib/handlebars-4.0.5.js' type='text/javascript'></script>
-  <script src='lib/lodash.min.js' type='text/javascript'></script>
-  <script src='lib/backbone-min.js' type='text/javascript'></script>
-  <script src='swagger-ui.js' type='text/javascript'></script>
-  <script src='lib/highlight.9.1.0.pack.js' type='text/javascript'></script>
-  <script src='lib/highlight.9.1.0.pack_extended.js' type='text/javascript'></script>
-  <script src='lib/jsoneditor.min.js' type='text/javascript'></script>
-  <script src='lib/marked.js' type='text/javascript'></script>
-  <script src='lib/swagger-oauth.js' type='text/javascript'></script>
+    <script src='lib/object-assign-pollyfill.js' type='text/javascript'></script>
+    <script src='lib/jquery-1.8.0.min.js' type='text/javascript'></script>
+    <script src='lib/jquery.slideto.min.js' type='text/javascript'></script>
+    <script src='lib/jquery.wiggle.min.js' type='text/javascript'></script>
+    <script src='lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+    <script src='lib/handlebars-4.0.5.js' type='text/javascript'></script>
+    <script src='lib/lodash.min.js' type='text/javascript'></script>
+    <script src='lib/backbone-min.js' type='text/javascript'></script>
+    <script src='swagger-ui.js' type='text/javascript'></script>
+    <script src='lib/highlight.9.1.0.pack.js' type='text/javascript'></script>
+    <script src='lib/highlight.9.1.0.pack_extended.js' type='text/javascript'></script>
+    <script src='lib/jsoneditor.min.js' type='text/javascript'></script>
+    <script src='lib/marked.js' type='text/javascript'></script>
+    <script src='lib/swagger-oauth.js' type='text/javascript'></script>
 
-  <!-- Some basic translations -->
-  <!-- <script src='lang/translator.js' type='text/javascript'></script> -->
-  <!-- <script src='lang/ru.js' type='text/javascript'></script> -->
-  <!-- <script src='lang/en.js' type='text/javascript'></script> -->
+    <!-- Some basic translations -->
+    <!-- <script src='lang/translator.js' type='text/javascript'></script> -->
+    <!-- <script src='lang/ru.js' type='text/javascript'></script> -->
+    <!-- <script src='lang/en.js' type='text/javascript'></script> -->
 
-  <script type="text/javascript">
-    $(function () {
-      var url = window.location.search.match(/url=([^&]+)/);
-      if (url && url.length > 1) {
-        url = decodeURIComponent(url[1]);
-      } else {
-          
-        var protocol = location.protocol;
-        var slashes = protocol.concat("//");
-        var host = slashes.concat(window.location.hostname);
-        var base = host.concat(":"+window.location.port);
-          
-        url = base + "/swagger.json";
-          
-      }
+    <script type="text/javascript">
+        $(function () {
+            var url = window.location.search.match(/url=([^&]+)/);
+            if (url && url.length > 1) {
+                url = decodeURIComponent(url[1]);
+            } else {
 
-      hljs.configure({
-        highlightSizeThreshold: 5000
-      });
+                var protocol = location.protocol;
+                var slashes = protocol.concat("//");
+                var host = slashes.concat(window.location.hostname);
+                var base = host.concat(":" + window.location.port);
 
-      // Pre load translate...
-      if(window.SwaggerTranslator) {
-        window.SwaggerTranslator.translate();
-      }
-      window.swaggerUi = new SwaggerUi({
-        url: url,
-        dom_id: "swagger-ui-container",
-        supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
-        onComplete: function(swaggerApi, swaggerUi){
-          if(typeof initOAuth == "function") {
-            initOAuth({
-              clientId: "your-client-id",
-              clientSecret: "your-client-secret-if-required",
-              realm: "your-realms",
-              appName: "your-app-name",
-              scopeSeparator: " ",
-              additionalQueryStringParams: {}
+                url = base + "/swagger.json";
+
+            }
+
+            hljs.configure({
+                highlightSizeThreshold: 5000
             });
-          }
 
-          if(window.SwaggerTranslator) {
-            window.SwaggerTranslator.translate();
-          }
-        },
-        onFailure: function(data) {
-          log("Unable to Load SwaggerUI");
-        },
-//        docExpansion: "list",
-        jsonEditor: false,
-        defaultModelRendering: 'schema',
-        showRequestHeaders: false,
-        showOperationIds: false
-      });
+            // Pre load translate...
+            if (window.SwaggerTranslator) {
+                window.SwaggerTranslator.translate();
+            }
+            window.swaggerUi = new SwaggerUi({
+                url: url,
+                dom_id: "swagger-ui-container",
+                supportedSubmitMethods: ['get', 'post', 'put', 'delete', 'patch'],
+                onComplete: function (swaggerApi, swaggerUi) {
+                    if (typeof initOAuth == "function") {
+                        initOAuth({
+                            clientId: "your-client-id",
+                            clientSecret: "your-client-secret-if-required",
+                            realm: "your-realms",
+                            appName: "your-app-name",
+                            scopeSeparator: " ",
+                            additionalQueryStringParams: {}
+                        });
+                    }
 
-      window.swaggerUi.load();
+                    if (window.SwaggerTranslator) {
+                        window.SwaggerTranslator.translate();
+                    }
+                },
+                onFailure: function (data) {
+                    log("Unable to Load SwaggerUI");
+                },
+                //        docExpansion: "list",
+                jsonEditor: false,
+                defaultModelRendering: 'schema',
+                showRequestHeaders: false,
+                showOperationIds: false
+            });
 
-        swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization("Authorization", "XXXX", "header"));
+            window.swaggerUi.load();
 
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-}
+            swaggerUi.api.clientAuthorizations.add("key", new SwaggerClient.ApiKeyAuthorization("Authorization", "XXXX", "header"));
+
+
+            function log() {
+                if ('console' in window) {
+                    console.log.apply(console, arguments);
+                }
+            }
+
+$.get('/api/v1/session/token', function(token){
+    $('#csrf-token').val(token);
+    createCookie("XSRF-TOKEN", token);
+});
+            
+            
+            $('#csrf-token').change(function () {
+                console.log("new_value = "+$('#csrf-token').val());
+                createCookie("XSRF-TOKEN", $('#csrf-token').val());
+            });
+
+        });
         
         
-function createCookie(name,value,days) {
-    var expires = "";
+function createCookie(name, value, days) {
+    var expires;
+
     if (days) {
         var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    } else {
+        expires = "";
     }
-    document.cookie = name + "=" + value + expires + "; path=/";
+    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
 }
 
 function readCookie(name) {
-    var nameEQ = name + "=";
+    var nameEQ = encodeURIComponent(name) + "=";
     var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
+    for (var i = 0; i < ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
     }
     return null;
 }
 
 function eraseCookie(name) {
-    createCookie(name,"",-1);
+    createCookie(name, "", -1);
 }
-        eraseCookie("XSRF-TOKEN");
-        var csrf = getCookie("XSRF-TOKEN");
-        console.log(csrf);
         
-      function log() {
-        if ('console' in window) {
-          console.log.apply(console, arguments);
-        }
-      }
-  });
-  </script>
+    </script>
 </head>
 
-    <body class="swagger-section">
+<body class="swagger-section">
 
-        <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
-        <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
 
-    </body>
+
+    <div id="message-bar" class="swagger-ui-wrap" data-sw-translate>&nbsp;</div>
+    <div class="swagger-ui-wrap">
+    
+    <form>
+        <label for="token">CSRF Token</label>
+        <input id="csrf-token" name="token" type="text" size=128>
+    </form>
+    
+    </div>
+    <div id="swagger-ui-container" class="swagger-ui-wrap">
+    </div>
+
+</body>
+
 </html>
