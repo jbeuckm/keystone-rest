@@ -7,14 +7,13 @@ module.exports.addRoutes = function (app, keystone, basePath) {
     console.log('keystone-rest.addRoutes(app, keystone)');
 
     var swaggerJSDoc = require('swagger-jsdoc');
-
+    
     var swaggerDefinition = {
         info: {
             title: keystone._options.name + ' REST API',
             version: '0.0.1',
             description: '',
         },
-        host: 'localhost:3000',
         basePath: basePath + '/',
     };
 
@@ -58,6 +57,13 @@ module.exports.addRoutes = function (app, keystone, basePath) {
 
     app.get('/swagger.json', function (req, res) {
         res.setHeader('Content-Type', 'application/json');
+        
+    var port = process.env.PORT || 3000;
+    var host = req.hostname;
+        console.log(host+':'+port);
+
+        console.log(swaggerSpec);
+        
         res.send(swaggerSpec);
     });
 
